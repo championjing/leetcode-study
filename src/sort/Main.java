@@ -1,6 +1,4 @@
-package sort;
-
-import org.junit.Test;
+﻿package src.sort;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -16,10 +14,43 @@ public class Main {
 
     public static void main(String[] args) {
         int[] arr = {6,8,2,9,1,22,15,18};
-//        quick( arr, 0,arr.length-1 );
-        insert(arr);
-//        shell(arr);
+        bubble(arr);
+        //quick( arr, 0,arr.length-1 );
+        //insert( arr );
         System.out.println(Arrays.toString( arr ) );
+    }
+
+    /**
+     * 冒泡排序, 第i个数，不断的往后比较，
+     * @param arr
+     */
+    public static void bubble(int[] arr){
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - i -1; j++) {   // 这里说明为什么需要-1
+                if( arr[j] > arr[j+1] ) {
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+    }
+    
+    /**
+     * 选择排序，首先在未排序的数列中找到最小(or最大)元素，然后将其存放到数列的起始位置；接着，再从剩余未排序的元素中
+     * 继续寻找最小(or最大)元素，然后放到已排序序列的末尾。
+     * @param arr
+     */
+    public static void select(int[] arr){
+        for (int i=0; i<arr.length; i++) {
+            for (int j=i+1;j<arr.length; j++) {
+                if (arr[i]>arr[j]) {
+                    int temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
     }
 
     /**
@@ -34,7 +65,7 @@ public class Main {
             int povitIndex = r;
             for (int i=r;i<l;i++) {
                 if ( arr[i] < arr[povitIndex] ) {
-                    for ( int j=i;j>=povitIndex; j-- ) {
+                    for ( int j=i;j>povitIndex; j-- ) {
                         int temp = arr[j];
                         arr[j] = arr[j-1];
                         arr[j-1] = temp;
@@ -47,9 +78,15 @@ public class Main {
         }
     }
 
+    /**
+     *
+     * 把n个待排序的元素看成为一个有序表和一个无序表。开始时有序表中只包含1个元素，无序表中包含有n-1个元素，
+     * 排序过程中每次从无序表中取出第一个元素，将它插入到有序表中的适当位置，使之成为新的有序表，重复n-1次可完成排序过程
+     * @param arr
+     */
     public static void insert(int[] arr){
-        for (int i=1;i<arr.length; i++) {
-            for ( int j=i; j>0; j-- ) {
+        for (int i=1; i<arr.length; i++) {
+            for ( int j=i ;j>0; j-- ) {
                 if ( arr[j] < arr[j-1] ) {
                     int temp = arr[j];
                     arr[j] = arr[j-1];
