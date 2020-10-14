@@ -1,5 +1,7 @@
 ﻿package src.sort;
 
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -13,8 +15,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Main {
 
     public static void main(String[] args) {
-        int[] arr = {6,8,2,9,1,22,15,18};
-        bubble(arr);
+//        int[] arr = {6,8,2,9,1,22,15,18};
+        int[] arr = {110,100,90,40,80,20,60,10,30,50,70};
+        initHeap( arr );
+//        bubble(arr);
         //quick( arr, 0,arr.length-1 );
         //insert( arr );
         System.out.println(Arrays.toString( arr ) );
@@ -120,6 +124,29 @@ public class Main {
                     }
                 }
             }
+        }
+    }
+
+    public static void heap(int[] arr){
+        int i = arr.length/2 - 1;
+//        if ()
+    }
+    public static void initHeap(int[] arr){
+        for ( int i = arr.length/2 - 1; i>=0; i-- ) {
+            int pIndex = (i-1)/2;
+            int lIndex = 2*i + 1;
+            int rIndex = 2*i + 2;
+            if ( arr[lIndex] > arr[pIndex] ) {
+                int temp = arr[lIndex];
+                arr[lIndex] = arr[pIndex];
+                arr[pIndex] = temp;
+            }
+            if ( arr[rIndex] > arr[pIndex] ) {
+                int temp = arr[rIndex];
+                arr[rIndex] = arr[pIndex];
+                arr[pIndex] = temp;
+            }
+            System.out.println(Arrays.toString( arr ));
         }
     }
 
