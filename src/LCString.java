@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 /**
  * @author : championjing
  * @version V1.0
@@ -6,6 +8,11 @@
  */
 public class LCString {
 
+    @Test
+    public void testCountSayOut() {
+        System.out.println(countSayOut( 4 ));
+    }
+
     public String countSayOut(int n) {
         if (n==1) {
             return "1";
@@ -13,18 +20,17 @@ public class LCString {
         String str = countSayOut( n-1 );
         int length = str.length();
         StringBuffer sb = new StringBuffer();
+        int start = 0;
         for ( int i=1; i<length+1 ; i++ ) {
-//            if (  )
+            if ( i == length ) {
+                sb.append( i-start ).append( str.charAt(start) );
+            } else if (str.charAt( i ) != str.charAt( start )){
+                sb.append( i - start ).append(str.charAt( start ));
+                start = i;
+            }
         }
-        return "";
+        return sb.toString();
     }
-
-
-
-
-
-
-
 
     /**
      * 该方法递归调用放在前段，很好的方式
